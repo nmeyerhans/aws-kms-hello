@@ -53,25 +53,6 @@ end
 
 data_key = get_key(bucket, file + ".key")
 get_file(bucket, file, data_key)
-exit 0
-
-kms = Aws::KMS::Client.new(region: REGION)
-
-resp = kms.list_keys
-
-key_id = resp[0][0][0]
-resp[0].each do |o|
-  puts o.methods.sort
-end
-
-exit 0
-s3c = Aws::S3::Encryption::Client.new(encryption_key: datakey,
-                                      region: REGION)
-
-
-get_file(bucket: bucket,
-         key: key,
-         file: file)
 
 # Local variables:
 # mode: ruby
